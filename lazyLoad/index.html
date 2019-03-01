@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>图片懒加载</title>
+</head>
+
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    img {
+        display: block;
+        width: 170px;
+        height: 170px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    
+    #left-main {
+        width: 100px;
+        height: 300px;
+        position: absolute;
+        top: 150px;
+        right: 0px;
+        background: #ccc;
+    }
+</style>
+
+<body>
+    <div>
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00301.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00107.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00114.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00248.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00052.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00248.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00052.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00051.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00314.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00073.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00082.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00081.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00072.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00103.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00313.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00130.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00280.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00116.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00084.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00307.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00077.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00117.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00355.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00125.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00132.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00106.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00301.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00108.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00126.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00131.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00107.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00114.png" alt="图片">
+        <img src="" data-src="http://images.uxgaming.com/TCG_GAME_ICONS/PT/P00119.png" alt="图片">
+    </div>
+
+</body>
+<script type="text/javascript">
+    var imgs = document.querySelectorAll('img');
+    var left_ce = document.getElementById('left-main');
+
+    document.addEventListener("touchstart", function() {}, true);
+    window.onorientationchange = function() {
+        switch (window.orientation) {
+            case -90:
+            case 90:
+                alert("横屏:" + window.orientation);
+            case 0:
+            case 180:
+                alert("竖屏:" + window.orientation);
+                break;
+        }
+    }
+
+
+    function getTop(e) {
+        var T = e.offsetTop;
+        while (e = e.offsetParent) {
+            T += e.offsetTop
+        }
+        return T
+    }
+
+    function lazyLoad(imgs) {
+        var H = window.innerHeight;
+        var A = document.documentElement.scrollTop || document.body.scrollTop;
+        for (var i = 0; i < imgs.length; i++) {
+            if (H + A > getTop(imgs[i])) {
+                imgs[i].src = imgs[i].getAttribute('data-src');
+            }
+        }
+    }
+
+    window.onload = window.onscroll = function() {
+        lazyLoad(imgs);
+
+    }
+</script>
+
+</html>
