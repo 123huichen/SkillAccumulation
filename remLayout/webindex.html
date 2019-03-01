@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body, html{
+            margin: 0px;
+            padding: 0px;
+            max-width: 640px;
+            font-size: 30px;
+        }
+        body{
+            background-image: url(bg.png);
+            background-size: 100%; 
+            background-repeat: no-repeat; 
+        }
+        .nav{
+            margin-top: 23.3rem;
+            height: 1.0333333333333334rem;
+            width: 100%;
+            display: flex;
+            justify-content:space-around
+        }
+        .nav-box{
+            width: 2.8666666666666667rem;
+            background: #FFA491;
+            border-radius: 50px;
+            color: #FFFFFF;
+            font-size: 0.4666666666666667rem;
+            text-align: center;
+            line-height: 1.0333333333333334rem;
+        }
+        .nav-boot-re{
+            position: relative;
+            width: 100%;
+            height: 1.4333333333333333rem;
+        }
+        .nav-boot{
+            background-image: url(nav-bg.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            width: 8.266666666666667rem;
+            height: 1.4333333333333333rem;
+            position: absolute;
+            top: 0rem;
+            left: 50%;
+            margin-left: -4.13333333333333rem;
+            z-index: 999;
+        }
+        .main{
+            width: 11.7rem;
+            margin: auto;
+            border: 3px solid #FDB8F5;
+            background: #FFFFFF;
+            border-radius: 0.7rem;
+            margin-top: -0.8333333333333333rem
+        }
+        .main-box{
+            padding: 1.5rem 0.8333333333333334rem 1.4333333333333334rem;
+            font-size: 0.4666666666666667rem;
+            color: #47204F;
+        }
+        .foot-p{
+            margin-top: 1.5rem;
+            font-size: 0.4066666666666667rem;
+            color: #ffffff;
+            text-align: center;               
+        }
+    </style>
+
+    <script>
+        (function(){
+            var winHeight = window.innerWidth;
+            var root = document.documentElement;
+            root.style.fontSize = (winHeight/375)*30 + "px";
+        })()
+    </script>
+</head>
+<body>
+    <div>
+        <div class="nav">
+            <div class="nav-box">活动规则</div>
+            <div class="nav-box">排行榜</div>
+            <div class="nav-box">主播回礼</div>
+        </div>
+        <div class="nav-boot-re">
+            <div class="nav-boot"></div>
+        </div>
+        <div class="main">
+            <div class="main-box">
+                <p>1.活动时间：8月17日00:00点---23: 59点 </p>
+
+                <p>2.“爱在七夕”活动期间，我们将会从收礼排行
+                    榜前三名主播中挑选当天中奖次数最多及送礼累
+                    计金额最高用户各一名。我们将会在18日的13时
+                    14分将署上您姓名的玫瑰花送到对应主播手上；</p>
+                    
+                <p>3.单个用户两次上榜，主播将会收到两次署名礼
+                    物；</p>
+                    
+                <p>4.拥有署名资格用户需在10点前联系客服，格式
+                    为“用户昵称+祝福语”，否则默认署名为用户
+                    昵称；</p>
+                    
+                <p> 5.“爱在七夕”——活动期间，主播将在指定时间
+                    段通过直播间发放红包作为回礼，直播间所有用
+                    户都可以参与。</p>
+            </div>
+        </div>
+    </div>
+    <p class="foot-p">
+        如有问题请联系客服微信:bb769303 QQ：2354374248
+    </p>
+
+</body>
+</html>
