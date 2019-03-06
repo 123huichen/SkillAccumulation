@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<div class="" style="width: 300px;height: 300px;position: absolute;left: 50%;margin-left: -150px;top: 50%;margin-top: -150px;background: #a5cfe8;">
+		<canvas id="mycanvas" width="300" height="300"></canvas>
+	</div>
+	
+	<script>
+		
+		
+		
+		function canvasctx(){
+			var num = 6;
+			var canvas = document.getElementById('mycanvas');
+			var ctx = canvas.getContext('2d');
+			
+			ctx.arc(150,150,148,0*Math.PI,2*Math.PI); //arc() 方法创建弧/曲线
+			//var my_gradient=ctx.createLinearGradient(0,0,0,170);//创建线性渐变（用在画布内容上）
+			//my_gradient.addColorStop(0,"black");
+			//my_gradient.addColorStop(1,"white");
+			
+			ctx.fillStyle='#ffb820'; //设置或返回用于填充绘画的颜色、渐变或模式
+			ctx.fill();//填充当前绘图（路径）
+			
+			
+		}
+		
+		canvasctx()
+	</script>
+</body>
+</html>
