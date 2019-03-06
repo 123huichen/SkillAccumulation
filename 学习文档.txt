@@ -11,6 +11,12 @@
    https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000
 
 2、小程序ios和安卓的兼容性问题
+   
+   newDate(“2018-08-08”)，在ios会出现NaN的情况，ios只支持newDate(“2018/08/08”)
+   display:flex样式在ios8以及一下的的版本需要做兼容处理
+   margin在IOS中失效（小程序本身问题需绕开）
+   ixed定位 整个页面的fixed定位，在ios下下拉会触发下拉事件，但是没有动画效果。Android就能正常运行（尽量不用fixed）
+   	
 
 3、微信支付
 
