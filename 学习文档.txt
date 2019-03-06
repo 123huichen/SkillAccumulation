@@ -16,6 +16,57 @@
 
 4、this指向问题
 
-5、video.js
+   ①this的指向在函数创建的时候是决定不了的，在调用的时候才能决定，谁调用的就指向谁
+   function a(){
+      var user = "小J";
+      console.log(this.user); //undefined
+      console.log(this); //Window
+   }
+   a(); //指向全局Window
+   
+   var o = {
+      user:"追梦子",
+      fn:function(){
+         console.log(this.user);  //追梦子
+      }
+   }
+   o.fn(); //指向o
+   
+   var o = {
+      a:10,
+      b:{
+          a:12,
+          fn:function(){
+              console.log(this.a); //12
+          }
+      }
+   }
+   o.b.fn() //指向b
+   
+   var o = {
+      a:10,
+      b:{
+          a:12,
+          fn:function(){
+              console.log(this.a); //undefined
+              console.log(this); //window
+          }
+      }
+   }
+   var j = o.b.fn;
+   j(); //this永远指向的是最后调用它的对象  指向Window
+   
+   ②函数直接调用，严格模式下为undefined 非严格模式下默认指向全局对象
 
-6、javascript原型链
+   ③this碰到return时 如果返回值是一个对象，那么this指向的就是那个返回的对象，如果返回值不是一个对象那么this还是指向函数的实例。
+   
+   ④call和apply，this绑定到第一个参数上
+   
+   ⑤箭头函数不绑定this，它会捕获其所在（即定义的位置）上下文的this值， 作为自己的this值，
+   
+   ⑥原型链中的方法的this仍然指向调用它的对象
+
+   ⑦setTimeout & setInterval对于延时函数内部的回调函数的this指向全局对象window（当然我们可以通过bind方法改变其内部函数的this指向）
+   
+
+5、javascript原型链
