@@ -1,24 +1,16 @@
 function canvasctx(angelTo){
 			
 			
-			
 			//平分角度
 			var angel = (2 * Math.PI / 360) * (360 / 7);
 			var startAngel = 2 * Math.PI / 360 * (-90)
 			var endAngel = 2 * Math.PI / 360 * (-90) + angel 
 			
-			//画布中心移动到canvas中心
-			ctx.translate(150, 150)
-			
-			ctx.clearRect(-150, -150, 150, 150);
+			//ctx.clearRect(-150, -150, 150, 150);
 			
 			//旋转画布
 			ctx.save()
             ctx.rotate(angelTo * Math.PI / 180);
-			
-			
-			
-			
 			
 			//画外圆
 			ctx.beginPath();

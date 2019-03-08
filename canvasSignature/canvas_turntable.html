@@ -26,6 +26,10 @@
 		var awardTitle = [];
 		var canvas = document.getElementById('mycanvas');
 		var ctx = canvas.getContext('2d');
+		
+		//画布中心移动到canvas中心
+		ctx.translate(150, 150)
+		
 		// 初始化装盘数据 正常情况下应该由后台返回
         var initData = {
             "success": true,
@@ -99,13 +103,28 @@
 			
 			angeln = 360 - (count*angeln + angeln/2);
 			angeln += 720;
+			
+		    // 基值（减速）
+            var baseStep = 30
+            // 起始滚动速度
+            var baseSpeed = 0.4
 			//步长
 			var countdata = 1;
 			
-			var time = setInterval(function(){
+			var timer = setInterval(function(){
+				
 				canvasctx(countdata);
-				console.log(111)
-				countdata++
+				console.log(countdata);
+				console.log(angeln);
+				console.log('------------');
+				if (countdata == angeln) {
+					clearInterval(timer)
+				}
+				countdata = countdata + baseStep * (((angeln - countdata) / angeln) > baseSpeed ? baseSpeed : ((angeln - countdata) / angeln))
+                if (angeln - countdata < 0.5) {
+                    countdata = angeln
+                }
+                
 			}, 25)
 			
 		})
