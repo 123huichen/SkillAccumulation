@@ -5,33 +5,111 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Document</title>
+	<script src="js/turntable.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<style>
+		.canvasbox{
+			width: 300px;height: 300px;position: absolute;left: 50%;margin-left: -150px;top: 50%;margin-top: -200px;
+		}
+		.canvasbox img{
+			position: absolute; top: 50%;width: 70px; height: 75px; margin-top: -37.5px; left: 50%; margin-left: -35px;
+		}
+	</style>
 </head>
-<body>
-	<div class="" style="width: 300px;height: 300px;position: absolute;left: 50%;margin-left: -150px;top: 50%;margin-top: -150px;background: #a5cfe8;">
+<body style="width: 100%; height: 100vh; margin: 0px; padding: 0px;background: #59aaf1;">
+	<div class="canvasbox">
 		<canvas id="mycanvas" width="300" height="300"></canvas>
+		<img src="images/start.png" id="start">
 	</div>
 	
 	<script>
+		var awardTitle = [];
+		var canvas = document.getElementById('mycanvas');
+		var ctx = canvas.getContext('2d');
+		// 初始化装盘数据 正常情况下应该由后台返回
+        var initData = {
+            "success": true,
+            "list": [{
+                "id": 100,
+                "name": "谢谢参与",
+                "rank": 1,
+                "percent": 3
+            }, {
+                "id": 101,
+                "name": "10积分",
+                "rank": 2,
+                "percent": 5
+            }, {
+                "id": 102,
+                "name": "免费零食",
+                "rank": 3,
+                "percent": 2  
+            }, {
+                "id": 103,
+                "name": "巧克力",
+                "rank": 4,
+                "percent": 49
+            }, {
+                "id": 104,
+                "name": "花生",
+                "rank": 5,
+                "percent": 30
+            }, {
+                "id": 105,
+                "name": "10元购物劵",
+                "rank": 6,
+                "percent": 1
+            }, {
+                "id": 106,
+                "name": "100元话费",
+                "rank": 7,
+                "percent": 10
+            }]
+        }
+		canvasctx();
 		
 		
-		
-		function canvasctx(){
-			var num = 6;
-			var canvas = document.getElementById('mycanvas');
-			var ctx = canvas.getContext('2d');
-			
-			ctx.arc(150,150,148,0*Math.PI,2*Math.PI); //arc() 方法创建弧/曲线
-			//var my_gradient=ctx.createLinearGradient(0,0,0,170);//创建线性渐变（用在画布内容上）
-			//my_gradient.addColorStop(0,"black");
-			//my_gradient.addColorStop(1,"white");
-			
-			ctx.fillStyle='#ffb820'; //设置或返回用于填充绘画的颜色、渐变或模式
-			ctx.fill();//填充当前绘图（路径）
-			
-			
+		//计算分配获奖概率（所有想加为100%）
+		function getGift(){
+			var percent = Math.random() * 100;
+			var totalPercent = 0;
+			for (var i = 0; i < initData.list.length; i++) {
+				totalPercent += initData.list[i].percent;
+				if (percent <= totalPercent) {
+					return initData.list[i];
+				}
+			}
 		}
 		
-		canvasctx()
+		//点击事件
+		$("#start").click(function(){
+			
+			var winData = getGift();
+			console.log(winData)
+			
+			//计算奖品角度
+			var angeln = 360 / initData.list.length;
+			var count = 0
+			for(var a = 0; a < initData.list.length; a++){
+				if(winData.id == initData.list[a].id){
+					break;
+				}
+				count++;
+			}
+			
+			angeln = 360 - (count*angeln + angeln/2);
+			angeln += 720;
+			//步长
+			var countdata = 1;
+			
+			var time = setInterval(function(){
+				canvasctx(countdata);
+				console.log(111)
+				countdata++
+			}, 25)
+			
+		})
+		
 	</script>
 </body>
 </html>
