@@ -74,7 +74,23 @@
 
    ⑦setTimeout & setInterval对于延时函数内部的回调函数的this指向全局对象window（当然我们可以通过bind方法改变其内部函数的this指向）
    
+5、Date()
+   创建 Date 对象： new Date()
+      var d = new Date();
+      var d = new Date(milliseconds);
+      var d = new Date(dateString);
+      var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
 
-5、javascript原型链
+   getFullYear() 返回一个表示 年份 的4位数字
+   getMonth() 返回表示 月份 的数字。返回值是 0（一月） 到 11（十二月） 之间的一个整数
+   getDate() 返回月份的 某一天
+   getDay() 返回一周（0~6）的某一天的数字
+   getHours() 返回时间的小时字段
+   getMinutes() 返回时间的分钟字段
+   getSeconds() 返回时间的秒。返回值是 0 ~ 59 之间的一个整数
+   getMilliseconds() 返回时间的毫秒
 
-6、html5 拖拽
+6、javascript原型链
+
+7、html5 拖拽
+
