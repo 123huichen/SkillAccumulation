@@ -59,11 +59,7 @@
                 //      background:"#ffffff"//线条背景，选填
             });
             
-            document.body.addEventListener('touchmove', function (e) {
-				//阻止默认的处理方式(阻止下拉滑动的效果)
-			   	e.preventDefault(); 
-			   	
-			}, {passive: false});
+             
         };
 
         function lineCanvas(obj) {
@@ -82,7 +78,7 @@
             this.cxt.fillRect(0, 0, this.canvas.width, this.canvas.width);
             this.cxt.strokeStyle = this.color;
             this.cxt.lineWidth = this.linewidth;
-            this.cxt.lineCap = "round";
+            this.cxt.lineCap = "round"; 
             //开始绘制
             this.canvas.addEventListener("touchstart", function(e) {
                 this.cxt.beginPath();
@@ -96,7 +92,7 @@
             //结束绘制
             this.canvas.addEventListener("touchend", function() {
                 this.cxt.closePath();
-            }.bind(this), false);
+            }.bind(this), false);  
             //清除画布
             this.clearEl.addEventListener("click", function() {
                 this.cxt.clearRect(0, 0, this.canvas.width, this.canvas.height);

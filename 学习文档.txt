@@ -1,42 +1,42 @@
-1��git��ͻ����֧���ϲ�
+1、git冲突，分支，合并
    
-   �鿴��֧��git branch
-   ������֧��git branch <name>
-   �л���֧��git checkout <name>
-   ����+�л���֧��git checkout -b <name>
-   �ϲ�ĳ��֧����ǰ��֧��git merge <name>
-   ɾ����֧��git branch -d <name>
+   查看分支：git branch
+   创建分支：git branch <name>
+   切换分支：git checkout <name>
+   创建+切换分支：git checkout -b <name>
+   合并某分支到当前分支：git merge <name>
+   删除分支：git branch -d <name>
    
-   ����֧�ύ���֮�� �л�������֧��Ȼ����кϲ�git merge <name> �ϲ������push��github
+   当分支提交完成之后 切换到主分支，然后进行合并git merge <name> 合并完成在push到github
    https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000
 
-2��С����ios�Ͱ�׿�ļ���������
+2、小程序ios和安卓的兼容性问题
    
-   newDate(��2018-08-08��)����ios�����NaN�������iosֻ֧��newDate(��2018/08/08��)
-   display:flex��ʽ��ios8�Լ�һ�µĵİ汾��Ҫ�����ݴ���
-   margin��IOS��ʧЧ��С�������������ƿ���
-   ixed��λ ����ҳ���fixed��λ����ios�������ᴥ�������¼�������û�ж���Ч����Android�����������У���������fixed��
+   newDate(“2018-08-08”)，在ios会出现NaN的情况，ios只支持newDate(“2018/08/08”)
+   display:flex样式在ios8以及一下的的版本需要做兼容处理
+   margin在IOS中失效（小程序本身问题需绕开）
+   fixed定位 整个页面的fixed定位，在ios下下拉会触发下拉事件，但是没有动画效果。Android就能正常运行（尽量不用fixed）
    	
 
-3��΢��֧��
+3、微信支付
 
-4��thisָ������
+4、this指向问题
 
-   ��this��ָ���ں���������ʱ���Ǿ������˵ģ��ڵ��õ�ʱ����ܾ�����˭���õľ�ָ��˭
+   ①this的指向在函数创建的时候是决定不了的，在调用的时候才能决定，谁调用的就指向谁
    function a(){
-      var user = "СJ";
+      var user = "小J";
       console.log(this.user); //undefined
       console.log(this); //Window
    }
-   a(); //ָ��ȫ��Window
+   a(); //指向全局Window
    
    var o = {
-      user:"׷����",
+      user:"追梦子",
       fn:function(){
-         console.log(this.user);  //׷����
+         console.log(this.user);  //追梦子
       }
    }
-   o.fn(); //ָ��o
+   o.fn(); //指向o
    
    var o = {
       a:10,
@@ -47,7 +47,7 @@
           }
       }
    }
-   o.b.fn() //ָ��b
+   o.b.fn() //指向b
    
    var o = {
       a:10,
@@ -60,19 +60,21 @@
       }
    }
    var j = o.b.fn;
-   j(); //this��Զָ��������������Ķ���  ָ��Window
+   j(); //this永远指向的是最后调用它的对象  指向Window
    
-   �ں���ֱ�ӵ��ã��ϸ�ģʽ��Ϊundefined ���ϸ�ģʽ��Ĭ��ָ��ȫ�ֶ���
+   ②函数直接调用，严格模式下为undefined 非严格模式下默认指向全局对象
 
-   ��this����returnʱ �������ֵ��һ��������ôthisָ��ľ����Ǹ����صĶ����������ֵ����һ��������ôthis����ָ������ʵ����
+   ③this碰到return时 如果返回值是一个对象，那么this指向的就是那个返回的对象，如果返回值不是一个对象那么this还是指向函数的实例。
    
-   ��call��apply��this�󶨵���һ��������
+   ④call和apply，this绑定到第一个参数上
    
-   �ݼ�ͷ��������this�����Ჶ�������ڣ��������λ�ã������ĵ�thisֵ�� ��Ϊ�Լ���thisֵ��
+   ⑤箭头函数不绑定this，它会捕获其所在（即定义的位置）上下文的this值， 作为自己的this值，
    
-   ��ԭ�����еķ�����this��Ȼָ��������Ķ���
+   ⑥原型链中的方法的this仍然指向调用它的对象
 
-   ��setTimeout & setInterval������ʱ�����ڲ��Ļص�������thisָ��ȫ�ֶ���window����Ȼ���ǿ���ͨ��bind�����ı����ڲ�������thisָ��
+   ⑦setTimeout & setInterval对于延时函数内部的回调函数的this指向全局对象window（当然我们可以通过bind方法改变其内部函数的this指向）
    
 
-5��javascriptԭ����
+5、javascript原型链
+
+6、html5 拖拽

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>日历签到</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="../canvasSignature/js/jquery.min.js"></script>
+</head>
+
+<body style="font-size: 14px;">
+    <div id="calendar_Dodui">
+        <!-- <div class="title-top">每日签到</div> -->
+        <div id="calendarYm_Dodui"><span id="year"></span>年<span id="month"></span>月</div>
+        <div id="week_Dodui">
+            <span>日</span>
+            <span>一</span>
+            <span>二</span>
+            <span>三</span>
+            <span>四</span>
+            <span>五</span>
+            <span>六</span>
+        </div>
+        <div id="dayBG_Dodui">
+            <ul id="daydataBG_Dodui"></ul>
+            <ul id="dataNums_Dodui"></ul>
+        </div>
+    </div>
+    <script>
+        var daydataBG_Dodui = document.getElementById('daydataBG_Dodui');
+        var htmldata = '';
+
+        for (var i = 0; i < 42; i++) {
+
+            htmldata += "<li class='bgli'></li>";
+        }
+
+        daydataBG_Dodui.innerHTML = htmldata;
+
+        var Dodui_Date = new Date();
+        var DoduiYear = Dodui_Date.getFullYear(); //年
+        var DoduiMonth = Dodui_Date.getMonth() + 1; //月
+        var DoduiDate = Dodui_Date.getDate(); //日
+        document.getElementById('year').innerHTML = DoduiYear;
+        document.getElementById('month').innerHTML = DoduiMonth;
+
+        //步骤1：获取年份，判断是否是闰年；
+        function ifnuanyes(year) {
+
+        }
+
+        //步骤2：获取当前初始月份，得到相应年月下的天数；
+        var d = new Date(DoduiYear, DoduiMonth, 0); //当前年月下的天数
+        console.log("当前月份下的天数：" + d.getDate())
+
+        //步骤3：当前月份下的1号是星期几
+        Dodui_Date.setDate(1);
+
+        var weekday = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+        var dataNum = d.getDate(); //返回初始年月下的天数
+        var weekOne = weekday[Dodui_Date.getDay()]; //初始化本月的1号是星期几
+        console.log(weekOne)
+
+        //获取1号排列前的空白数
+        var emptyDivs;
+
+        function emptyDiv() {
+            if (weekOne == '星期日') {
+                emptyDivs = 0;
+            }
+            if (weekOne == '星期一') {
+                emptyDivs = 1;
+            }
+            if (weekOne == '星期二') {
+                emptyDivs = 2;
+            }
+            if (weekOne == '星期三') {
+                emptyDivs = 3;
+            }
+            if (weekOne == '星期四') {
+                emptyDivs = 4;
+            }
+            if (weekOne == '星期五') {
+                emptyDivs = 5;
+            }
+            if (weekOne == '星期六') {
+                emptyDivs = 6;
+            }
+        }
+
+        emptyDiv();
+
+        var emptyHtml1 = "";
+        for (var i = 0; i < emptyDivs; i++) {
+            emptyHtml1 += "<li class='emptyli1 ggli'></li>";
+        }
+        document.getElementById("dataNums_Dodui").innerHTML += emptyHtml1;
+
+        var dayNumHtml1 = "";
+        for (var i = 1; i <= dataNum; i++) {
+            dayNumHtml1 += "<li class='Numli1 ggli'>" + i + "</li>";
+        }
+        document.getElementById("dataNums_Dodui").innerHTML += dayNumHtml1;
+
+        //设置今天号数背景色为绿色
+        var num1 = (DoduiDate + emptyDivs);
+        console.log(num1)
+        document.getElementsByClassName("ggli")[num1 - 1].classList.add("nowDataDodui");
+        document.getElementsByClassName("ggli")[num1 - 1].setAttribute('style', 'background-color: #289860;color:#ffffff')
+
+        for (var i = 0; i < num1 - 1; i++) {
+            document.getElementsByClassName("ggli")[i].setAttribute('style', 'color:#ccc')
+        }
+
+        //签到
+        var nowqd = true;
+        $(".ggli").on("click", function() {
+            if ($(this).hasClass("nowDataDodui")) {
+                document.getElementsByClassName("nowDataDodui")[0].setAttribute("style", "background-color: #289860;background-image:url(images/DODUI.png);background-size: 48%;background-repeat: no-repeat;background-position: center;color: transparent;")
+                alert("签到成功天")
+
+                //签到提交至服务器-开始
+                //      $.ajax({
+                //          type: "post",
+                //          url: "", //服务器连接地址
+                //          data: {
+                //              "参数名": "参数值",
+                //              "参数名": "参数值"
+                //          }, //格式是json的格式哦（我一般就用的json，当然还是有其它格式哈）
+                //          dataType: 'json',
+                //          success: function(data) {
+                //              //成功执行
+                //
+                //          },
+                //
+                //          error: function(data2) {
+                //              //失败执行
+                //          }
+                //      })    //这块地内容属于签到提交至服务器
+
+                nowqd = false;
+            } else {
+                alert("只能签到当天")
+            }
+        })
+    </script>
+</body>
+
+</html>

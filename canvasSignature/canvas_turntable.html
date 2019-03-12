@@ -26,6 +26,7 @@
 		var awardTitle = [];
 		var canvas = document.getElementById('mycanvas');
 		var ctx = canvas.getContext('2d');
+		var throttle =true;
 		
 		//画布中心移动到canvas中心
 		ctx.translate(150, 150)
@@ -91,6 +92,10 @@
 			var winData = getGift();
 			console.log(winData)
 			
+			if (!throttle) {
+				return false
+			}
+			throttle = false
 			//计算奖品角度
 			var angeln = 360 / initData.list.length;
 			var count = 0
@@ -118,7 +123,8 @@
 				console.log(angeln);
 				console.log('------------');
 				if (countdata == angeln) {
-					clearInterval(timer)
+					clearInterval(timer);
+					throttle = true
 				}
 				countdata = countdata + baseStep * (((angeln - countdata) / angeln) > baseSpeed ? baseSpeed : ((angeln - countdata) / angeln))
                 if (angeln - countdata < 0.5) {

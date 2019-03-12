@@ -1,0 +1,108 @@
+* {
+    margin: 0px;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.title-top {
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin: auto;
+    background: #4CAF50;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#calendar_Dodui {
+    width: 100%;
+    background: #289860;
+}
+
+#calendarYm_Dodui {
+    height: 3em;
+    width: 100%;
+    line-height: 3em;
+    font-size: 1.2em;
+    color: #fff;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+
+#calendarYm_Dodui span {
+    /*display:block;*/
+    padding: 0 6%;
+}
+
+#week_Dodui {
+    width: 100%;
+    color: #fff;
+    font-size: 1.2em;
+    display: flex;
+    height: 3rem;
+}
+
+#week_Dodui span {
+    display: block;
+    width: calc(100% / 7);
+    text-align: center;
+    line-height: 3rem;
+}
+
+#dayBG_Dodui {
+    background: #4CAF50;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+#daydataBG_Dodui {
+    position: relative;
+    height: 18.7em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#daydataBG_Dodui li {
+    display: block;
+    width: calc(96.6% / 7);
+    background: #f0f0f0;
+    height: 3em;
+    float: left;
+    margin: .2% .2%;
+}
+
+#dataNums_Dodui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+#dataNums_Dodui li {
+    display: block;
+    width: calc(97.6% / 7);
+    height: 3em;
+    float: left;
+    margin: .2% .2%;
+    text-align: center;
+    line-height: 3em;
+    font-size: 1em;
+}
+
+#dataNums_Dodui li:nth-of-type(7n-6) {
+    margin-left: 0;
+}
+
+#dataNums_Dodui li:nth-of-type(7n) {
+    margin-right: 0;
+}

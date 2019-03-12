@@ -1,0 +1,34 @@
+cnavas 转盘
+1、弧度的计算公式: 2*PI/360*角度
+
+2、beginPath()起始一条路径，或重置当前路径
+
+3、rotate()旋转当前绘图
+   context.rotate(angle); //旋转角度，以弧度计。举例：如需旋转 5 度，可规定下面的公式：5*Math.PI/180。
+
+4、translate()重新映射画布上的 (0,0) 位置
+   context.translate(x,y); // x添加到水平坐标（x）上的值, y添加到垂直坐标（y）上的值
+
+5、fill()填充当前绘图（路径）
+
+6、arc()创建弧/曲线（用于创建圆形或部分圆）
+   context.arc(x,y,r,sAngle,eAngle,counterclockwise);  //x圆的中心的 x 坐标。y圆的中心的 y 坐标。r圆的半径。sAngle起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。eAngle结束角，以弧度计。counterclockwise可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆时针。
+
+7、stroke()绘制已定义的路径、
+
+8、save()保存当前环境的状态
+
+9、Math.cos()和Math.sin()的使用
+
+
+canvas 签名
+1、moveTo() 把路径移动到画布中的指定点，不创建线条
+   context.moveTo(x,y); //x路径的目标位置的 x 坐标, y路径的目标位置的 y 坐标
+
+2、lineTo()添加一个新点，然后在画布中创建从该点到最后指定点的线条
+   context.lineTo(x,y); //x路径的目标位置的 x 坐标, y路径的目标位置的 y 坐标
+
+3、closePath()创建从当前点回到起始点的路径
+   
+4、clearRect()在给定的矩形内清除指定的像素
+   context.clearRect(x,y,width,height); //x路径的目标位置的 x 坐标, y路径的目标位置的 y 坐标 width要清除的矩形的宽度，以像素计 height要清除的矩形的高度，以像素计
