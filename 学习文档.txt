@@ -90,7 +90,23 @@
    getSeconds() 返回时间的秒。返回值是 0 ~ 59 之间的一个整数
    getMilliseconds() 返回时间的毫秒
 
-6、javascript原型链
+6、浏览器存储localStorage、sessionStorage和cookie
 
-7、html5 拖拽
+   localStorage和sessionStorage
+
+   localStorage - 没有时间限制的持久的数据存储，只要你不主动删除可以想存多久存多久。
+   sessionStorage - 针对一个 session 的数据存储，这些数据只有在同一个会话中的页面才能访问，当会话结束后数据也随之销毁 因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。
+   浏览器支持条件window.localStorage 和 window.sessionStorage
+   localStorage和sessionStorage语法相同 
+   XXX.setItem("key", "value"); //保存数据
+   XXX.removeItem("key"); //删除数据
+   var lastname = XXX.getItem("key"); //读取数据
+
+   cookie
+
+   
+
+7、javascript原型链
+
+8、html5 拖拽
 

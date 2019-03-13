@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浏览器存储</title>
+    <script src="../canvasSignature/js/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        input {
+            height: 40px;
+            width: 300px;
+            margin: 5px;
+            border-radius: 30px
+        }
+        
+        .clicksave,
+        .clickClear,
+        .clickView {
+            height: 40px;
+            width: 300px;
+            margin: 5px auto;
+            border-radius: 30px;
+            background: #4CAF50;
+            line-height: 40px;
+            color: #fff
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center">
+        <h3>LocalStorage</h3>
+        <input id="Input_box" type="text" value="" placeholder="请输入内容" />
+        <div class="clicksave" id="Localclicksave">点击保存</div>
+        <div class="clickClear" id="LocalclickClear">点击清除</div>
+        <div class="clickView" id="LocalclickView">点击查看</div>
+    </div>
+
+    <div style="text-align: center">
+        <h3>sessionStorage</h3>
+        <input id="sessionInput_box" type="text" value="" placeholder="请输入内容" />
+        <div class="clicksave" id="sessionclicksave">点击保存</div>
+        <div class="clickClear" id="sessionclickClear">点击清除</div>
+        <div class="clickView" id="sessionclickView">点击查看</div>
+    </div>
+
+    <div style="text-align: center">
+        <h3>cookie</h3>
+        <input id="Input_box" type="text" value="" placeholder="请输入内容" />
+        <div class="clicksave" id="cookieclicksave">点击保存</div>
+        <div class="clickClear" id="cookieclickClear">点击清除</div>
+        <div class="clickView" id="cookieclickView">点击查看</div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem("inpt")) {
+                $("#Input_box").val(storage.getItem("inpt"))
+            }
+
+            if (session_storage.getItem("inpt")) {
+                $("#sessionInput_box").val(session_storage.getItem("inpt"))
+            }
+        }
+
+        //localStorage
+        if (window.localStorage) {
+
+            var storage = window.localStorage;
+
+            //存储
+            $("#Localclicksave").click(function() {
+                storage.a = 1;
+                storage["b"] = 2;
+                storage.setItem("inpt", $('#Input_box').val())
+            })
+
+            //清除存储
+            $('#LocalclickClear').click(function() {
+                //清除所有
+                //storage.clear();
+                //对某个键值删除
+                storage.removeItem("inpt")
+            })
+
+            //查看存储
+            $("#LocalclickView").click(function() {
+                alert(storage.getItem("inpt"))
+            })
+
+        } else {
+            alert("浏览暂不支持localStorage")
+        }
+
+        //sessionStorage
+        if (window.sessionStorage) {
+
+            var session_storage = window.sessionStorage;
+
+            //存储
+            $("#sessionclicksave").click(function() {
+                session_storage.a = 1;
+                session_storage["b"] = 2;
+                session_storage.setItem("inpt", $('#sessionInput_box').val())
+            })
+
+            //清除存储
+            $('#sessionclickClear').click(function() {
+                //清除所有
+                //storage.clear();
+                //对某个键值删除
+                session_storage.removeItem("inpt")
+            })
+
+            //查看存储
+            $("#sessionclickView").click(function() {
+                alert(session_storage.getItem("inpt"))
+            })
+
+        } else {
+            alert("浏览暂不支持sessionStorage")
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            var user = getCookie("username");
+            if (user != "") {
+                alert("欢迎 " + user + " 再次访问");
+            } else {
+                user = prompt("请输入你的名字:", "");
+                if (user != "" && user != null) {
+                    setCookie("username", user, 30);
+                }
+            }
+        }
+
+        checkCookie()
+    </script>
+</body>
+
+</html>
